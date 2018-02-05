@@ -2,8 +2,9 @@
   "name": "setupr",
   "version": "1.0.0",
   "description": "Environment setup tool for multi-repo projects",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
+    "start": "ts-node src/index.ts",
     "test": "jest"
   },
   "repository": {
@@ -15,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/arutkowski00/setupr/issues"
   },
-  "homepage": "https://github.com/arutkowski00/setupr#readme"
+  "homepage": "https://github.com/arutkowski00/setupr#readme",
+  "dependencies": {
+    "inversify": "^4.10.0",
+    "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.1",
+    "@types/node": "^9.4.0",
+    "jest": "^22.1.4",
+    "ts-jest": "^22.0.3",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.1"
+  }
 }
