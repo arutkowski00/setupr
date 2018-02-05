@@ -5,6 +5,7 @@
     "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSourceMap": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,

@@ -7,13 +7,23 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Debug app",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/_bin.js",
       "args": [
         "${workspaceFolder}/src/index.ts"
       ],
       "cwd": "${workspaceRoot}",
       "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug tests",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": [
+        "-i"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
