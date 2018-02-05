@@ -1,0 +1,19 @@
+{
+  "name": "setupr",
+  "version": "1.0.0",
+  "description": "Environment setup tool for multi-repo projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/arutkowski00/setupr.git"
+  },
+  "author": "Adam Rutkowski <a_rutkowski@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arutkowski00/setupr/issues"
+  },
+  "homepage": "https://github.com/arutkowski00/setupr#readme"
+}
