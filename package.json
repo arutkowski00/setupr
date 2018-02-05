@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "lint": "tslint -p tsconfig.json; tslint 'tests/**/*'",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --coverage --coverageReporters lcov && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/jest": "^22.1.1",
     "@types/node": "^9.4.0",
+    "codacy-coverage": "^2.0.3",
     "jest": "^22.1.4",
     "ts-jest": "^22.0.3",
     "ts-node": "^4.1.0",
