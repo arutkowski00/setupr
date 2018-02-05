@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "lint": "tslint -p tsconfig.json",
     "test": "jest"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "jest": "^22.1.4",
     "ts-jest": "^22.0.3",
     "ts-node": "^4.1.0",
+    "tslint": "^5.9.1",
     "typescript": "^2.7.1"
   }
 }
