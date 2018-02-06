@@ -5,6 +5,7 @@
   ],
   "jsRules": {},
   "rules": {
+    "member-access": false,
     "no-console": false,
     "quotemark": [
       true,
