@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Environment setup tool for multi-repo projects",
   "main": "./dist/index.js",
+  "bin": {
+    "setupr": "./dist/index.js"
+  },
   "scripts": {
     "start": "ts-node src/index.ts",
     "lint": "tslint -p tsconfig.json; tslint 'tests/**/*'",
@@ -21,11 +24,16 @@
   "homepage": "https://github.com/arutkowski00/setupr#readme",
   "dependencies": {
     "inversify": "^4.10.0",
-    "reflect-metadata": "^0.1.12"
+    "js-yaml": "^3.10.0",
+    "listr": "^0.13.0",
+    "nodegit": "^0.20.3",
+    "reflect-metadata": "^0.1.12",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/jest": "^22.1.1",
     "@types/node": "^9.4.0",
+    "@types/yargs": "^10.0.1",
     "codacy-coverage": "^2.0.3",
     "jest": "^22.1.4",
     "ts-jest": "^22.0.3",
