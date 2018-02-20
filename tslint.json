@@ -5,6 +5,8 @@
   ],
   "jsRules": {},
   "rules": {
+    "arrow-parens": false,
+    "interface-name": [true, "never-prefix"],
     "member-access": false,
     "no-console": false,
     "quotemark": [

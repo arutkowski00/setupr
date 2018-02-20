@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es5",
     "module": "commonjs",
     "outDir": "./dist",
     "emitDecoratorMetadata": true,
@@ -11,7 +11,7 @@
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "lib": [],
+    "lib": ["es2015"],
     "types": [
       "jest",
       "node"
