@@ -24,15 +24,18 @@
   },
   "homepage": "https://github.com/arutkowski00/setupr#readme",
   "dependencies": {
+    "ajv": "^6.1.1",
     "inversify": "^4.10.0",
     "js-yaml": "^3.10.0",
     "listr": "^0.13.0",
     "nodegit": "^0.20.3",
     "reflect-metadata": "^0.1.12",
+    "typescript-json-schema": "^0.20.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/jest": "^22.1.1",
+    "@types/js-yaml": "^3.10.1",
     "@types/node": "^9.4.0",
     "@types/yargs": "^10.0.1",
     "codacy-coverage": "^2.0.3",
@@ -40,6 +43,7 @@
     "ts-jest": "^22.0.3",
     "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
+    "typemoq": "^2.1.0",
     "typescript": "^2.7.1"
   }
 }
