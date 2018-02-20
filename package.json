@@ -10,7 +10,8 @@
     "start": "ts-node src/index.ts",
     "lint": "tslint -p tsconfig.json; tslint 'tests/**/*'",
     "test": "jest",
-    "test:ci": "jest --coverage --coverageReporters lcov && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage"
+    "test:ci": "jest --coverage --coverageReporters lcov && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
