@@ -1,4 +1,4 @@
-export interface IArguments {
+export interface Arguments {
   /** Non-option arguments */
   _: string[];
   /** The script name or node command */
@@ -6,11 +6,11 @@ export interface IArguments {
   repository?: string;
 }
 
-export interface ICommand {
-  execute(argv: IArguments): void;
+export interface Command {
+  execute(argv: Arguments): void;
 }
 
-export interface ITask {
+export interface Task {
   title: string;
   enabled?(ctx: any): boolean;
   skip?(ctx: any): any;
