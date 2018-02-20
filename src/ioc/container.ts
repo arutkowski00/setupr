@@ -1,31 +1,48 @@
+import * as Ajv from 'ajv';
 import { Container, ContainerModule, interfaces } from 'inversify';
+import * as TJS from 'typescript-json-schema';
 
 import { InitCommand } from '../commands';
+import { JsonSchemaGenerator, JsonSchemaValidatorFactory, ProjectLoader, ProjectValidator } from '../project';
 import { DummyTask } from '../tasks';
-import { IArguments, ICommand, ITask, TYPE } from './';
+import { FileSystemUtils } from '../utils/file';
+import { Arguments, Command, Task } from './interfaces';
+import { TYPE } from './type';
 
-interface INewableCollection<T> {
-  [key: string]: { new(): T };
+interface NewableCollection<T> {
+  [key: string]: { new(...args: any[]): T };
 }
 
 export class AppContainer extends Container {
-  readonly commands: INewableCollection<ICommand> = {
+  readonly commands: NewableCollection<Command> = {
     init: InitCommand,
   };
-  readonly tasks: INewableCollection<ITask> = {
+  readonly tasks: NewableCollection<Task> = {
     dummy: DummyTask,
   };
   readonly thirdPartyDependencies: ContainerModule;
   readonly appDependencies: ContainerModule;
 
-  constructor(args: IArguments) {
+  constructor(args?: Arguments) {
     super();
     this.thirdPartyDependencies = new ContainerModule((bind) => {
-      // nothing
+      bind<JsonSchemaValidatorFactory>(TYPE.JsonSchemaValidatorFactory)
+        .toFactory((): JsonSchemaValidatorFactory => {
+          return (options) => new Ajv(options);
+        });
+      bind<JsonSchemaGenerator>(TYPE.JsonSchemaGenerator)
+        .toConstantValue(TJS);
     });
 
     this.appDependencies = new ContainerModule((bind) => {
-      bind<IArguments>(TYPE.Arguments).toConstantValue(args);
+      if (args) {
+        bind<Arguments>(TYPE.Arguments).toConstantValue(args);
+      }
+
+      bind<FileSystemUtils>(TYPE.FileSystemUtils).to(FileSystemUtils).inSingletonScope();
+      bind<ProjectLoader>(TYPE.ProjectLoader).to(ProjectLoader);
+      bind<ProjectValidator>(TYPE.ProjectValidator).to(ProjectValidator);
+
       this.bindCommands(bind);
       this.bindTasks(bind);
     });
@@ -33,25 +50,21 @@ export class AppContainer extends Container {
     this.load(this.thirdPartyDependencies, this.appDependencies);
   }
 
-  getCommand(name: string): ICommand {
-    return this.getNamed<ICommand>(TYPE.Command, name);
+  getCommand(name: string): Command {
+    return this.getNamed<Command>(TYPE.Command, name);
   }
 
   private bindCommands(bind: interfaces.Bind) {
-    for (const commandKey in this.commands) {
-      if (this.commands.hasOwnProperty(commandKey)) {
-        const command = this.commands[commandKey];
-        bind<ICommand>(TYPE.Command).to(command).whenTargetNamed(commandKey);
-      }
+    for (const commandKey of Object.keys(this.commands)) {
+      const command = this.commands[commandKey];
+      bind<Command>(TYPE.Command).to(command).whenTargetNamed(commandKey);
     }
   }
 
   private bindTasks(bind: interfaces.Bind) {
-    for (const taskKey in this.tasks) {
-      if (this.tasks.hasOwnProperty(taskKey)) {
-        const task = this.tasks[taskKey];
-        bind<ITask>(TYPE.Task).to(task).whenTargetNamed(taskKey);
-      }
+    for (const taskKey of Object.keys(this.tasks)) {
+      const task = this.tasks[taskKey];
+      bind<Task>(TYPE.Task).to(task).whenTargetNamed(taskKey);
     }
   }
 }
