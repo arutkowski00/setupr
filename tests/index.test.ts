@@ -1,5 +1,11 @@
+import 'reflect-metadata';
+
+import { AppContainer } from '../src/ioc/container';
+import { IArguments } from '../src/ioc/interfaces';
+
 describe('index', () => {
   it('should pass', () => {
-    expect(true).toBe(true);
+    const container = new AppContainer({} as IArguments);
+    expect(container).toBeTruthy();
   });
 });

@@ -1,8 +1,8 @@
 import { injectable } from 'inversify';
-import { ITask } from '../ioc';
+import { Task } from '../ioc/interfaces';
 
 @injectable()
-export class DummyTask implements ITask {
+export class DummyTask implements Task {
   title: string = 'Dummy task';
 
   task() {
